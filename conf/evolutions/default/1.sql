@@ -21,6 +21,7 @@ create table order_unit (
   id                            bigint auto_increment not null,
   quantity                      integer,
   order_id                      bigint not null,
+  product_id                    bigint not null,
   constraint pk_order_unit primary key (id)
 );
 
@@ -47,6 +48,9 @@ create index ix_ordertable_user_id on ordertable (user_id);
 alter table order_unit add constraint fk_order_unit_order_id foreign key (order_id) references ordertable (id) on delete restrict on update restrict;
 create index ix_order_unit_order_id on order_unit (order_id);
 
+alter table order_unit add constraint fk_order_unit_product_id foreign key (product_id) references product (id) on delete restrict on update restrict;
+create index ix_order_unit_product_id on order_unit (product_id);
+
 alter table product add constraint fk_product_category_id foreign key (category_id) references category (id) on delete restrict on update restrict;
 create index ix_product_category_id on product (category_id);
 
@@ -58,6 +62,9 @@ drop index if exists ix_ordertable_user_id;
 
 alter table order_unit drop constraint if exists fk_order_unit_order_id;
 drop index if exists ix_order_unit_order_id;
+
+alter table order_unit drop constraint if exists fk_order_unit_product_id;
+drop index if exists ix_order_unit_product_id;
 
 alter table product drop constraint if exists fk_product_category_id;
 drop index if exists ix_product_category_id;

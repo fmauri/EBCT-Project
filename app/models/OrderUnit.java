@@ -5,6 +5,7 @@ import io.ebean.Model;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 
 @Entity
 public class OrderUnit extends Model {
@@ -20,7 +21,8 @@ public class OrderUnit extends Model {
     @ManyToOne(optional = false)
     public Order order;
 
-    @OneToMany(mappedBy = "orderunit")
+    @Constraints.Required
+    @ManyToOne(optional = false)
     public Product product;
 
     public static final Finder<Long, OrderUnit> find = new Finder<>(OrderUnit.class);
