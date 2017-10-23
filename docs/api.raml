@@ -1,0 +1,77 @@
+#%RAML 1.0
+
+# to view in browser: run 'api-designer' from /docs directory
+# dependencies 'npm install -g api-designer'
+
+title: Business project # required titlecollection
+baseUri: /api
+
+types:
+  Category:
+    type: object
+    properties:
+      id: number
+      name: string
+      products?: number[] # optional array of product ids
+
+  Product:
+    type: object
+    properties:
+      id: number
+      name: string
+      image: string # image url
+      price: number
+      category: number # category id
+
+  Order:
+    type: object
+    properties:
+      id: number
+      date: number
+      user: number # user id
+      orderUnits?: number # optional array of order units
+
+  OrderUnit:
+    type: object
+    properties:
+      id: number
+      quantity: number
+      order: number # order id
+      product: number # product id
+
+  User:
+    type: object
+    properties:
+      id: number
+      name: string
+      email: string
+
+/order:
+  /new:
+    post:
+      body:
+        application/json:
+          type: Order
+      responses:
+        200:
+          body:
+            application/json:
+              type: Order
+
+  /get:
+    /{userId}:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                type: Order[]
+
+/products: # optional resource
+  /get:
+    get:
+      responses: # declare a response
+        200: # HTTP status code
+          body: # declare content of response
+            application/json: # media type
+              type: Product
