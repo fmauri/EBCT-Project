@@ -21,8 +21,9 @@ public class UserController extends Controller {
         Form<User> userForm = formFactory.form(User.class);
         User user = userForm.bindFromRequest().get();
         user.save();
-
-        return redirect(routes.HomeController.index());
+	
+	return ok("ok");
+        // return redirect(routes.HomeController.index());
     }
 
     public Result getUsers(){

@@ -1,6 +1,9 @@
 package controllers;
 
+import com.google.inject.Inject;
 import play.mvc.*;
+
+import java.io.File;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -16,6 +19,11 @@ public class HomeController extends Controller {
      */
     public Result index() {
         return ok(views.html.index.render());
+    }
+
+
+    public Result staticFile(String path) {
+        return ok(new java.io.File("public/index.html"));
     }
 
 }
