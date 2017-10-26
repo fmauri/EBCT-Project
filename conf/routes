@@ -16,8 +16,9 @@ GET     /api/orders/get/:user       controllers.OrderController.getUserOrders(us
 
 
 # return angular index.html
-GET     /                           controllers.Assets.at(path="/public", file="/index.html")
-GET     /favicon.ico   controllers.Assets.at(path="/public", file="favicon.ico")
+#GET     /                           controllers.Assets.at(path="/public", file="/index.html")
+GET     /                           controllers.HomeController.index
+#GET     /favicon.ico   controllers.Assets.at(path="/public", file="favicon.ico")
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 GET     /*any                       controllers.HomeController.staticFile(any: String)
 
