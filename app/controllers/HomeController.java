@@ -19,7 +19,7 @@ public class HomeController extends Controller {
      */
     public Result index() {
 
-        return ok(views.html.index.render());
+        return ok(new java.io.File("public/index.html"));
     }
 
 
