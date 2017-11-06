@@ -1,0 +1,22 @@
+<div>         
+        <div class="basket-items-list">
+            <p>Name</p>
+            <span class="price">Price (PLN)</span>
+            <hr>
+            <div class="basket-item" *ngFor="let basketProduct of basketProducts">
+                <img src="{{basketProduct.img}}" alt="photo">
+                <p class="name-basket-item">{{basketProduct.name}}</p>
+                <span class="price">{{basketProduct.price}} PLN</span>    
+            </div>
+        </div>
+              <span class="price">Total: {{basketTotal}}</span>
+
+        <button mat-raised-button [routerLink]="'/products'">Continue Shopping</button>
+        <br>
+        <br>
+        <button mat-raised-button color="warn" (click)="onEmptyBasket()">EMPTY BASKET</button>
+</div>
+
+
+
+

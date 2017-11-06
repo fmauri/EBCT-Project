@@ -1,0 +1,28 @@
+.price {
+    position: absolute;
+    right: 3em;
+
+}
+
+img {
+    min-width: 5em;
+    min-height: 5em;
+    top: 50%;
+    /* margin-top: -50px; */
+    display: inline-block;
+}
+
+.basket-items-list {
+    width: 100%;
+    min-width: 20em;
+}
+
+.basket-item {
+    position: relative;
+    min-height: 7.5em;
+}
+
+.name-basket-item {
+    margin-left: 1em;
+    display: inline-block;
+}

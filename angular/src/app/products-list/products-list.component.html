@@ -1,0 +1,78 @@
+<div>
+    <mat-sidenav-container class="example-container">
+
+      <mat-sidenav mode="side" opened="false" position="start" #sidenav1 class="example-sidenav">
+          <br>
+          Categories:
+          <br>
+          <mat-selection-list #cats>
+            <mat-list-option *ngFor="let cat of categories">
+              {{cat.name}}
+            </mat-list-option>
+          </mat-selection-list>
+
+      </mat-sidenav>
+
+      <div>
+          <mat-grid-list cols="3" rowHeight="12em">
+              <mat-grid-tile
+                  *ngFor="let product of products"
+                  [colspan]=1
+                  [rowspan]=2
+                  [style.background]="pink">
+                
+                  <mat-card class="product-card">
+                    <img mat-card-image src={{product.img}} alt="PICTURE">
+                    <mat-card-content>
+                      <p>{{product.price}} PLN</p>
+                      <span class="empty-line"></span>
+                      <p>{{product.name}}</p>
+                      <span class="empty-line"></span>
+                      <p>{{product.description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-raised-button color="primary" *ngIf="!isInBasket(product)" (click)="onAddProduct(product)">ADD TO BASKET</button>
+                      <button mat-raised-button color="warn" *ngIf="isInBasket(product)" (click)="onRemoveProduct(product)">REMOVE FROM BASKET</button>
+                    </mat-card-actions>
+                  </mat-card>
+          
+              </mat-grid-tile>
+            </mat-grid-list>         
+          </div>
+
+    
+      <mat-sidenav #sidenav mode="side" opened="true" position="end" class="example-sidenav">
+        <br>
+        Basket:
+        <br>
+        <ul class="basket-list">
+            <li class="basket-list" *ngFor="let basketProduct of basketProducts"> {{basketProduct.name}} - {{basketProduct.price}} PLN</li>
+        </ul>
+        <br>
+        Items: {{basketProducts.length}}
+        <br>
+        <br>
+        
+        Total: {{basketTotal}}
+        <br>
+        <br>
+
+        <button mat-raised-button color="primary" [disabled]="basketProducts.length === 0" [routerLink]="'/basket'">CHECKOUT</button>
+        <br>
+        <br>
+        <button mat-raised-button color="warn" [disabled]="basketProducts.length === 0" (click)="onEmptyBasket()">EMPTY BASKET</button>
+      </mat-sidenav>
+
+      <button mat-fab class="example-fab-cat" (click)="sidenav1.toggle()">
+        <mat-icon *ngIf="!sidenav1.opened">Cat</mat-icon>
+        <mat-icon *ngIf="sidenav1.opened">Hide</mat-icon>
+      </button>
+
+      <button mat-fab class="example-fab" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">Basket</mat-icon>
+        <mat-icon *ngIf="sidenav.opened">Hide</mat-icon>
+      </button>
+    
+    </mat-sidenav-container>
+
+</div>
