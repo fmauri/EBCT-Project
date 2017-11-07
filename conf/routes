@@ -6,6 +6,8 @@
 # GET     /                           controllers.HomeController.index
 
 
+GET     /robots.txt                  controllers.Assets.at(path="/public", file="/robots.txt")
+
 POST    /api/users/add              controllers.UserController.addUser
 GET     /api/users/get              controllers.UserController.getUsers
 
