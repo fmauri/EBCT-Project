@@ -476,7 +476,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var API_URL = 'http://demo5661760.mockable.io/';
+var API_URL = 'https://demo5661760.mockable.io/';
 var ProductsService = (function () {
     // products: Product[];
     function ProductsService(http) {
