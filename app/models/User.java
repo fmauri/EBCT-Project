@@ -11,14 +11,17 @@ import java.util.List;
 @Entity
 public class User extends Model {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
     @Constraints.Required
-    public String name;
+    public String username;
 
     @Constraints.Required
     public String email;
+
+    public String authToken;
 
     @OneToMany(mappedBy = "user")
     public List<Order> orders = new ArrayList<Order>();
