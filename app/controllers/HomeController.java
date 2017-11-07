@@ -23,7 +23,7 @@ public class HomeController extends Controller {
 
 
     public Result staticFile(String path) {
-        return ok(new java.io.File("public/index.html"));
+        return ok(new java.io.File("/public/index.html"));
     }
 
 }
