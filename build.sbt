@@ -7,4 +7,12 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 
 scalaVersion := "2.12.2"
 
-libraryDependencies += guice
+libraryDependencies ++= Seq(
+  javaJdbc,
+  cache,
+  "org.mindrot" % "jbcrypt" % "0.3m",
+  javaWs,
+  guice
+)
+
+routesGenerator := InjectedRoutesGenerator

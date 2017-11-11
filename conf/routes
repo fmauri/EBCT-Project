@@ -5,23 +5,31 @@
 # An example controller showing a sample home page
 # GET     /                           controllers.HomeController.index
 
+#loggin part
+GET         /                            controllers.Application.index()
+GET         /signup                      controllers.AuthController.signup()
+POST        /signup                      controllers.AuthController.newUser()
+GET         /login                       controllers.AuthController.login()
+POST        /login                       controllers.AuthController.authenticate()
+GET         /logout                      controllers.AuthController.logout()
+# end
 
-GET     /robots.txt                  controllers.Assets.at(path="/public", file="/robots.txt")
+GET         /robots.txt                  controllers.Assets.at(path="/public", file="/robots.txt")
 
-POST    /api/users/add              controllers.UserController.addUser
-GET     /api/users/get              controllers.UserController.getUsers
+POST        /api/users/add               controllers.UserController.addUser
+GET         /api/users/get               controllers.UserController.getUsers
 
-GET     /api/products/get           controllers.ProductController.getProducts
+GET         /api/products/get            controllers.ProductController.getProducts
 
-POST    /api/orders/new             controllers.OrderController.addOrder
-GET     /api/orders/get/:user       controllers.OrderController.getUserOrders(user: Long)
+POST        /api/orders/new              controllers.OrderController.addOrder
+GET         /api/orders/get/:user        controllers.OrderController.getUserOrders(user: Long)
 
 
 # return angular index.html
-GET     /                           controllers.Assets.at(path="/public", file="/index.html")
+# GET         /                            controllers.Assets.at(path="/public", file="/index.html")
 
 #GET     /*file                      controllers.Assets.versioned(path="/public", file: Asset)
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-GET     /*any                       controllers.HomeController.staticFile(any: String)
+GET         /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)
+GET         /*any                        controllers.HomeController.staticFile(any: String)
 
 

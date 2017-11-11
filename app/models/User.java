@@ -1,4 +1,4 @@
-package models;
+package model;
 
 import io.ebean.Finder;
 import io.ebean.Model;
@@ -18,10 +18,26 @@ public class User extends Model {
     public String name;
 
     @Constraints.Required
+    private final String password;
+
+    @Constraints.Required
     public String email;
 
     @OneToMany(mappedBy = "user")
     public List<Order> orders = new ArrayList<Order>();
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public static final Finder<Long, User> find = new Finder<>(User.class);
 
