@@ -1,6 +1,5 @@
 import { Product } from './../product.model';
 import { ProductsService } from './../products.service';
-import { BasketState } from './../basket-state';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
@@ -12,6 +11,7 @@ import { BasketService } from '../basket-service.service';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit, OnDestroy {
+  // pending = true;
   products: Product[];
   private subscription: Subscription;
   basketProducts: Product[];
@@ -29,6 +29,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
     this.productsService.fetchProducts().subscribe((response: Product[]) => {
       this.products = response['products'];
+      // this.pending = false;
     });
 
     this.subscription = this.basketService.basketProductsChanged
@@ -61,10 +62,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   onEmptyBasket() {
     this.basketService.emptyBasket();
   }
-
-  // filterProducts(categoryName: string) {
-
-  // }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

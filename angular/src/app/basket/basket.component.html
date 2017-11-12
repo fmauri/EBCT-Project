@@ -1,20 +1,86 @@
-<div>         
-        <div class="basket-items-list">
-            <p>Name</p>
-            <span class="price">Price (PLN)</span>
-            <hr>
-            <div class="basket-item" *ngFor="let basketProduct of basketProducts">
-                <img src="{{basketProduct.img}}" alt="photo">
-                <p class="name-basket-item">{{basketProduct.name}}</p>
-                <span class="price">{{basketProduct.price}} PLN</span>    
-            </div>
-        </div>
-              <span class="price">Total: {{basketTotal}}</span>
+<div>
 
-        <button mat-raised-button [routerLink]="'/products'">Continue Shopping</button>
-        <br>
-        <br>
-        <button mat-raised-button color="warn" (click)="onEmptyBasket()">EMPTY BASKET</button>
+  <div class="basket-title">
+    <h1>Checkout</h1>
+    <button mat-raised-button [routerLink]="'/products'">Continue Shopping</button>
+  </div>
+
+  <mat-grid-list cols="5" rowHeight="4em">
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+            <b>Name</b>
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+      <b>Image</b>
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+      <b>Category</b>
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+      <b>Price</b>
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+      <button mat-raised-button color="warn" (click)="onEmptyBasket()" [routerLink]="'/products'">EMPTY BASKET</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <hr>
+  <!--List of rows-->
+  <mat-grid-list cols="5" rowHeight="6em" *ngFor="let basketProduct of basketProducts">
+    <!--Columns-->
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+            {{basketProduct.name}}
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+            <img class="basket-item-image" src="{{basketProduct.img}}" alt="Image">
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+      {{basketProduct.category}}
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+            {{basketProduct.price}} PLN
+    </mat-grid-tile>
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+      <button mat-raised-button color="warn" (click)="onRemoveItem(basketProduct)">X</button>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+  <mat-grid-list cols="5" rowHeight="6em">
+    <hr>
+    <mat-grid-tile class="continue-button"
+            [colspan]=4
+            [rowspan]=1>
+    </mat-grid-tile>
+      <!--empty place-->
+
+    <mat-grid-tile
+            [colspan]=1
+            [rowspan]=1>
+      <b>Total: {{basketTotal}} PLN</b>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
 </div>
 
 

@@ -10,7 +10,9 @@ import {
   MatCardModule,
   MatButtonModule,
   MatListModule,
-  MatSidenavModule } from '@angular/material';
+  MatSidenavModule ,
+  // MatProgressSpinnerModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     HttpClientModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    // MatProgressSpinnerModule
   ],
   providers: [
     BasketService,

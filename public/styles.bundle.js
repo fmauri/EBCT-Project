@@ -33,9 +33,10 @@ if(false) {
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 exports.i(__webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../material/prebuilt-themes/indigo-pink.css"), "");
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Barlow);", ""]);
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n\nbody{\n    font-family: 'Barlow', serif;\n}", ""]);
 
 // exports
 

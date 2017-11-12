@@ -30,10 +30,16 @@ export class BasketComponent implements OnInit {
     );
 
     this.basketProducts = this.basketService.getBasketProducts();
+    this.basketQuantity = this.basketService.getBasketProducts().length;
+    this.basketTotal = this.basketService.getBasketTotal();
 
   }
 
   onEmptyBasket() {
     this.basketService.emptyBasket();
+  }
+
+  onRemoveItem(product: Product) {
+    this.basketService.removeBasketProduct(product);
   }
 }

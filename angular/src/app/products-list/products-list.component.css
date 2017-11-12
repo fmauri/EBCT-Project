@@ -1,3 +1,7 @@
+div {
+    font-family: 'Barlow', serif;
+}
+
 img {
     max-height: 10em;
     max-width: 10em;
@@ -9,6 +13,7 @@ img {
 
 ul {
     list-style-type: none;
+    font-family: 'Barlow', serif;
 }
 
 .example-sidenav-content {
@@ -16,26 +21,30 @@ ul {
     height: 100%;
     align-items: center;
     justify-content: center;
+    font-family: 'Barlow', serif;
     
 }
 
 .example-sidenav {
     padding: 1em;
     min-width: 12em;
-    border: 0.05em solid rgba(80, 83, 104, 0.945);
+    /*border: 0.05em solid rgba(80, 83, 104, 0.945);*/
     text-align: center;
+    font-family: 'Barlow', serif;
 }
 
 .example-fab.mat-fab {
     position: absolute;
     right: 0.2em;
     top: 0.2em;
+    font-family: 'Barlow', serif;
 }
 
 .example-fab-cat {
     position: absolute;
     left: 0.2em;
     top: 0.2em;
+    font-family: 'Barlow', serif;
 }
 
 .product-card {
@@ -44,12 +53,20 @@ ul {
     min-height: 15em;
     height: 80%;
     width: 75%;
+    font-family: 'Barlow', serif;
 }
 
 .basket-list {
     text-align: center;
+    font-family: 'Barlow', serif;
+    font-size: 1em;
 }
 
 .empty-line {
     height: 0.5em;
+}
+
+.under-item {
+    padding-top: 1.3em;
+    padding-bottom: 0.7em;
 }
