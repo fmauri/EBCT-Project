@@ -18,11 +18,13 @@ public class PayPalController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
+
         return ok(views.html.checkout.render());
     }
 
 
     public Result checkout() {
+
         return ok(new java.io.File("/public/checkout.html"));
     }
 

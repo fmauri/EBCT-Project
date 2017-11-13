@@ -17,7 +17,7 @@ POST        /api/orders/new              controllers.OrderController.addOrder
 GET         /api/orders/get/:user        controllers.OrderController.getUserOrders(user: Long)
 
 # paypal
-GET         /pay                         controllers.Assets.at(path="/public", file="/checkout.html")
+GET         /pay                         controllers.PayPalController.index()
 
 # end
 # return angular index.html
