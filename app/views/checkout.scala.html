@@ -1,5 +1,67 @@
 @()
 
-@main("Welcome to Play") {
-  <h1>Welcome to PayPal!</h1>
+@main("Paypal payment") {
+<!DOCTYPE html>
+
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    </head>
+    Hello
+    <body>
+        <div id="paypal-button"></div>
+
+        <script>
+                paypal.Button.render({
+
+                    env: 'production', // Or 'sandbox',
+
+                    client: {
+                        sandbox: 'ActHlZqElF4vSwYPMiBd5Ww-TnMEtxbl8hCHDNjvNaN2jYTJ31-se_T_SGF2yjzqcn_8Xm3gauV9fPtI',
+                        production: 'AaMVs1HrduBk2BxcLmw2yUI5qJ5IaikjGtBkFphlq1NUwWwG9og4-X2Wat6AGfnmW1o58RIlP-jNYmaz'
+                    },
+
+                    commit: true, // Show a 'Pay Now' button
+
+                    style: {
+                        color: 'gold',
+                        size: 'small'
+                    },
+
+                    payment: function (data, actions) {
+                        return actions.payment.create({
+                            payment: {
+                                transactions: [
+                                    {
+                                        amount: {total: '1.00', currency: 'USD'}
+                                    }
+                                ]
+                            }
+                        });
+                    },
+
+                    onAuthorize: function (data, actions) {
+                        return actions.payment.execute().then(function (payment) {
+
+                            // The payment is complete!
+                            // You can now show a confirmation message to the customer
+                        });
+                    },
+
+                    onCancel: function (data, actions) {
+                        /*
+                         * Buyer cancelled the payment
+                         */
+                    },
+
+                    onError: function (err) {
+                        /*
+                         * An error occurred during the transaction
+                         */
+                    }
+
+                }, '#paypal-button');
+        </script>
+    </body>
 }

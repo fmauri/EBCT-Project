@@ -1,5 +1,7 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <div>
-
   <div class="basket-title">
     <h1>Checkout</h1>
     <button mat-raised-button [routerLink]="'/products'">Continue Shopping</button>
@@ -7,28 +9,28 @@
 
   <mat-grid-list cols="5" rowHeight="4em">
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
-            <b>Name</b>
+      [colspan]=1
+      [rowspan]=1>
+      <b>Name</b>
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
+      [colspan]=1
+      [rowspan]=1>
       <b>Image</b>
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
+      [colspan]=1
+      [rowspan]=1>
       <b>Category</b>
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
+      [colspan]=1
+      [rowspan]=1>
       <b>Price</b>
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
+      [colspan]=1
+      [rowspan]=1>
       <button mat-raised-button color="warn" (click)="onEmptyBasket()" [routerLink]="'/products'">EMPTY BASKET</button>
     </mat-grid-tile>
   </mat-grid-list>
@@ -37,28 +39,28 @@
   <mat-grid-list cols="5" rowHeight="6em" *ngFor="let basketProduct of basketProducts">
     <!--Columns-->
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
-            {{basketProduct.name}}
+      [colspan]=1
+      [rowspan]=1>
+      {{basketProduct.name}}
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
-            <img class="basket-item-image" src="{{basketProduct.img}}" alt="Image">
+      [colspan]=1
+      [rowspan]=1>
+      <img class="basket-item-image" src="{{basketProduct.img}}" alt="Image">
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
+      [colspan]=1
+      [rowspan]=1>
       {{basketProduct.category}}
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
-            {{basketProduct.price}} PLN
+      [colspan]=1
+      [rowspan]=1>
+      {{basketProduct.price}} PLN
     </mat-grid-tile>
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
+      [colspan]=1
+      [rowspan]=1>
       <button mat-raised-button color="warn" (click)="onRemoveItem(basketProduct)">X</button>
     </mat-grid-tile>
 
@@ -67,22 +69,77 @@
   <mat-grid-list cols="5" rowHeight="6em">
     <hr>
     <mat-grid-tile class="continue-button"
-            [colspan]=4
-            [rowspan]=1>
+                   [colspan]=4
+                   [rowspan]=1>
     </mat-grid-tile>
-      <!--empty place-->
-
+    <!--empty place-->
     <mat-grid-tile
-            [colspan]=1
-            [rowspan]=1>
+      [colspan]=1
+      [rowspan]=1>
+      <div id="paypal-button"></div>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]=1
+      [rowspan]=1>
       <b>Total: {{basketTotal}} PLN</b>
     </mat-grid-tile>
-
   </mat-grid-list>
-
 
 </div>
 
+<script>
+  paypal.Button.render({
+
+    env: 'sandbox', // Either 'production' or 'sandbox',
+
+    client: {
+      sandbox: 'ActHlZqElF4vSwYPMiBd5Ww-TnMEtxbl8hCHDNjvNaN2jYTJ31-se_T_SGF2yjzqcn_8Xm3gauV9fPtI',
+      production: 'AaMVs1HrduBk2BxcLmw2yUI5qJ5IaikjGtBkFphlq1NUwWwG9og4-X2Wat6AGfnmW1o58RIlP-jNYmaz'
+    },
+
+    commit: true, // Show a 'Pay Now' button
+
+    style: {
+      size: 'small',
+      color: 'gold',
+      shape: 'pill',
+      label: 'checkout'
+    },
+
+    payment: function (data, actions) {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            {
+              amount: {total: data.basketTotal, currency: 'PLN'}
+            }
+          ]
+        }
+      });
+    },
+
+    onAuthorize: function (data, actions) {
+      return actions.payment.execute().then(function (payment) {
+
+        // The payment is complete!
+        // You can now show a confirmation message to the customer
+      });
+    },
+
+    onCancel: function (data, actions) {
+      /*
+       * Buyer cancelled the payment
+       */
+    },
+
+    onError: function (err) {
+      /*
+       * An error occurred during the transaction
+       */
+    }
+
+  }, '#paypal-button');
+</script>
 
 
 
