@@ -7,6 +7,11 @@
 
 
 GET         /robots.txt                  controllers.Assets.at(path="/public", file="/robots.txt")
+GET         /inline.bundle.js            controllers.Assets.at(path="/public", file="/inline.bundle.js")
+GET         /polyfills.bundle.js         controllers.Assets.at(path="/public", file="/polyfills.bundle.js")
+GET         /styles.bundle.js            controllers.Assets.at(path="/public", file="/styles.bundle.js")
+GET         /vendor.bundle.js            controllers.Assets.at(path="/public", file="/vendor.bundle.js")
+GET         /main.bundle.js              controllers.Assets.at(path="/public", file="/main.bundle.js")
 
 POST        /api/users/add               controllers.UserController.addUser
 GET         /api/users/get               controllers.UserController.getUsers
