@@ -26,4 +26,7 @@ public class PayPalController extends Controller {
         return ok(new java.io.File("/public/checkout.html"));
     }
 
+    public Result process(){
+        return ok(views.html.checkout.render());
+    }
 }
