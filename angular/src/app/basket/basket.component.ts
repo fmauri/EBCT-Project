@@ -71,7 +71,7 @@ export class BasketComponent implements OnInit {
 
       onAuthorize: function (data, actions) {
         return actions.payment.execute().then(function () {
-          alert('Payment Complete!');
+          window.alert('Payment Complete!');
         });
       },
 
