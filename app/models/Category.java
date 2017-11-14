@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.ebean.Finder;
 import io.ebean.Model;
 
@@ -15,6 +16,7 @@ public class Category extends Model {
 
     public String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "category")
     public List<Product> productList = new ArrayList<Product>();
 

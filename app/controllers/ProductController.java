@@ -1,6 +1,9 @@
 package controllers;
 
+import io.ebean.Ebean;
+import models.Category;
 import models.Product;
+import play.api.Mode;
 import play.data.FormFactory;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -20,6 +23,11 @@ public class ProductController extends Controller {
         // todo- possible filters with category
         List<Product> products = Product.find.all();
         return ok(Json.toJson(products));
+    }
+
+    public Result getProduct(Long id){
+        Product product = Product.find.query("id= " + id).findOne();
+        return ok(Json.toJson(product));
     }
 
 }

@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.ebean.Finder;
 import io.ebean.Model;
 import play.data.validation.Constraints;
@@ -14,14 +15,15 @@ public class Product extends Model {
     public Long id;
 
     @Constraints.Required
-    String name;
+    public String name;
 
-    String image;
-    String extra;
+    public String image;
+    public String extra;
 
     @Constraints.Required
-    Float price;
+    public Float price;
 
+    @JsonBackReference
     @ManyToOne
     public Category category;
 

@@ -17,9 +17,13 @@ POST        /api/users/add               controllers.UserController.addUser
 GET         /api/users/get               controllers.UserController.getUsers
 
 GET         /api/products/get            controllers.ProductController.getProducts
+GET         /api/products/get/:id        controllers.ProductController.getProduct(id: Long)
 
 POST        /api/orders/new              controllers.OrderController.addOrder
 GET         /api/orders/get/:user        controllers.OrderController.getUserOrders(user: Long)
+
+GET         /api/categories/get          controllers.CathegoryController.getAllCathegories
+GET         /api/categories/get/:id       controllers.CathegoryController.getCathegories(id: Long)
 
 # paypal
 GET         /pay                         controllers.Assets.at(path="/public", file="/checkout.html")
