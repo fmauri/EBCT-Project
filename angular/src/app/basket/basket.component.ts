@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Subscription } from 'rxjs/Subscription';
+import {Subscription} from 'rxjs/Subscription';
 
-import { ProductsService } from './../products.service';
-import { BasketService } from './../basket-service.service';
-import { Product } from '../product.model';
+import {ProductsService} from './../products.service';
+import {BasketService} from './../basket-service.service';
+import {Product} from '../product.model';
 
 declare const paypal: any;
 
@@ -19,17 +19,18 @@ export class BasketComponent implements OnInit {
   basketTotal = 0;
   basketQuantity = 0;
 
-  constructor(private basketService: BasketService, private productsService: ProductsService) { }
+  constructor(private basketService: BasketService, private productsService: ProductsService) {
+  }
 
   ngOnInit() {
     this.subscription = this.basketService.basketProductsChanged
-    .subscribe(
-      (basketProducts: Product[]) => {
-        this.basketProducts = basketProducts;
-        this.basketQuantity = basketProducts.length;
-        this.basketTotal = this.basketService.getBasketTotal();
-      }
-    );
+      .subscribe(
+        (basketProducts: Product[]) => {
+          this.basketProducts = basketProducts;
+          this.basketQuantity = basketProducts.length;
+          this.basketTotal = this.basketService.getBasketTotal();
+        }
+      );
 
     this.basketProducts = this.basketService.getBasketProducts();
     this.basketQuantity = this.basketService.getBasketProducts().length;
@@ -37,7 +38,7 @@ export class BasketComponent implements OnInit {
     this.initPaypal();
   }
 
-  initPaypal(){
+  initPaypal() {
     const self = this;
     paypal.Button.render({
 
@@ -69,10 +70,8 @@ export class BasketComponent implements OnInit {
       },
 
       onAuthorize: function (data, actions) {
-        return actions.payment.execute().then(function(payment) {
-
-          // The payment is complete!
-          // You can now show a confirmation message to the customer
+        return actions.payment.execute().then(function () {
+          alert('Payment Complete!');
         });
       },
 
