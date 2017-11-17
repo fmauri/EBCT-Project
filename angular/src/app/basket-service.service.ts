@@ -8,8 +8,6 @@ import 'rxjs/add/operator/catch';
 
 import { Product } from './product.model';
 
-const API_URL = 'http://demo5661760.mockable.io/';
-
 @Injectable()
 export class BasketService {
   basketProductsChanged = new Subject<Product[]>();
@@ -24,6 +22,8 @@ export class BasketService {
     this.basketProducts.push(newProduct);
     this.basketTotal += newProduct.price;
 
+    localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
+
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
@@ -32,6 +32,7 @@ export class BasketService {
       return item.id !== product.id;
     });
     this.basketTotal -= product.price;
+    localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
@@ -42,11 +43,15 @@ export class BasketService {
   emptyBasket() {
     this.basketProducts = [];
     this.basketTotal = 0;
+    localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
   constructor() {
     this.basketProducts = JSON.parse(localStorage.getItem('basketProducts') || '[]');
+    this.basketProducts.forEach(
+        item => this.basketTotal += item.price
+    );
   }
 
 }

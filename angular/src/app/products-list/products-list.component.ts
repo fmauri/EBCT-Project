@@ -35,8 +35,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
       (basketProducts: Product[]) => {
         this.basketProducts = basketProducts;
         this.basketTotal = this.basketService.getBasketTotal();
-
-        localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
       }
     );
 

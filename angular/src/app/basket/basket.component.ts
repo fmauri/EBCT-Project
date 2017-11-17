@@ -16,8 +16,8 @@ declare const paypal: any;
 export class BasketComponent implements OnInit {
   subscription: Subscription;
   basketProducts: Product[] = [];
-  basketTotal = 0;
-  basketQuantity = 0;
+  basketTotal;
+  basketQuantity;
 
   constructor(private basketService: BasketService) { }
 

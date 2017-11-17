@@ -171,13 +171,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var API_URL = 'http://demo5661760.mockable.io/';
 var BasketService = (function () {
     function BasketService() {
+        var _this = this;
         this.basketProductsChanged = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["a" /* Subject */]();
         this.basketTotal = 0;
         this.basketProducts = JSON.parse(localStorage.getItem('basketProducts') || '[]');
-        console.log('basket service: ' + JSON.parse(localStorage.getItem('basketProducts') || '[]'));
+        this.basketProducts.forEach(function (item) { return _this.basketTotal += item.price; });
     }
     BasketService.prototype.getBasketProducts = function () {
         return this.basketProducts.slice();
@@ -185,6 +185,7 @@ var BasketService = (function () {
     BasketService.prototype.addBasketProduct = function (newProduct) {
         this.basketProducts.push(newProduct);
         this.basketTotal += newProduct.price;
+        localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         this.basketProductsChanged.next(this.basketProducts.slice());
     };
     BasketService.prototype.removeBasketProduct = function (product) {
@@ -192,6 +193,7 @@ var BasketService = (function () {
             return item.id !== product.id;
         });
         this.basketTotal -= product.price;
+        localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         this.basketProductsChanged.next(this.basketProducts.slice());
     };
     BasketService.prototype.getBasketTotal = function () {
@@ -200,6 +202,7 @@ var BasketService = (function () {
     BasketService.prototype.emptyBasket = function () {
         this.basketProducts = [];
         this.basketTotal = 0;
+        localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         this.basketProductsChanged.next(this.basketProducts.slice());
     };
     return BasketService;
@@ -244,8 +247,7 @@ module.exports = "<div>\n\n  <div class=\"basket-title\">\n    <h1>Checkout</h1>
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BasketComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__products_service__ = __webpack_require__("../../../../../src/app/products.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__basket_service_service__ = __webpack_require__("../../../../../src/app/basket-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basket_service_service__ = __webpack_require__("../../../../../src/app/basket-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -257,14 +259,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 var BasketComponent = (function () {
-    function BasketComponent(basketService, productsService) {
+    function BasketComponent(basketService) {
         this.basketService = basketService;
-        this.productsService = productsService;
         this.basketProducts = [];
-        this.basketTotal = 0;
-        this.basketQuantity = 0;
     }
     BasketComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -273,12 +271,10 @@ var BasketComponent = (function () {
             _this.basketProducts = basketProducts;
             _this.basketQuantity = basketProducts.length;
             _this.basketTotal = _this.basketService.getBasketTotal();
-            // localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         });
         this.basketProducts = this.basketService.getBasketProducts();
         this.basketQuantity = this.basketService.getBasketProducts().length;
         this.basketTotal = this.basketService.getBasketTotal();
-        // localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         this.initPaypal();
     };
     BasketComponent.prototype.initPaypal = function () {
@@ -337,10 +333,10 @@ BasketComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/basket/basket.component.html"),
         styles: [__webpack_require__("../../../../../src/app/basket/basket.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__basket_service_service__["a" /* BasketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__basket_service_service__["a" /* BasketService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__products_service__["a" /* ProductsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__products_service__["a" /* ProductsService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__basket_service_service__["a" /* BasketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__basket_service_service__["a" /* BasketService */]) === "function" && _a || Object])
 ], BasketComponent);
 
-var _a, _b;
+var _a;
 //# sourceMappingURL=basket.component.js.map
 
 /***/ }),
@@ -469,11 +465,10 @@ var ProductsListComponent = (function () {
             .subscribe(function (basketProducts) {
             _this.basketProducts = basketProducts;
             _this.basketTotal = _this.basketService.getBasketTotal();
-            localStorage.setItem('basketProducts', JSON.stringify(_this.basketProducts));
+            // localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         });
         this.basketProducts = this.basketService.getBasketProducts();
         this.basketTotal = this.basketService.getBasketTotal();
-        console.log('product list: ' + this.basketProducts);
     };
     ProductsListComponent.prototype.onAddProduct = function (newProduct) {
         this.basketService.addBasketProduct(newProduct);
