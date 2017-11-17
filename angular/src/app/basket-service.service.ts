@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { BasketState } from './basket-state';
 import { Product } from './product.model';
 
 const API_URL = 'http://demo5661760.mockable.io/';
@@ -14,7 +13,7 @@ const API_URL = 'http://demo5661760.mockable.io/';
 @Injectable()
 export class BasketService {
   basketProductsChanged = new Subject<Product[]>();
-  basketProducts: Product[] = [];
+  basketProducts: Product[];
   basketTotal = 0;
 
   getBasketProducts() {
@@ -24,6 +23,7 @@ export class BasketService {
   addBasketProduct(newProduct: Product) {
     this.basketProducts.push(newProduct);
     this.basketTotal += newProduct.price;
+
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
@@ -45,6 +45,8 @@ export class BasketService {
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
-  constructor() { }
+  constructor() {
+    this.basketProducts = JSON.parse(localStorage.getItem('basketProducts') || '[]');
+  }
 
 }

@@ -175,8 +175,9 @@ var API_URL = 'http://demo5661760.mockable.io/';
 var BasketService = (function () {
     function BasketService() {
         this.basketProductsChanged = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["a" /* Subject */]();
-        this.basketProducts = [];
         this.basketTotal = 0;
+        this.basketProducts = JSON.parse(localStorage.getItem('basketProducts') || '[]');
+        console.log('basket service: ' + JSON.parse(localStorage.getItem('basketProducts') || '[]'));
     }
     BasketService.prototype.getBasketProducts = function () {
         return this.basketProducts.slice();
@@ -272,10 +273,12 @@ var BasketComponent = (function () {
             _this.basketProducts = basketProducts;
             _this.basketQuantity = basketProducts.length;
             _this.basketTotal = _this.basketService.getBasketTotal();
+            // localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         });
         this.basketProducts = this.basketService.getBasketProducts();
         this.basketQuantity = this.basketService.getBasketProducts().length;
         this.basketTotal = this.basketService.getBasketTotal();
+        // localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
         this.initPaypal();
     };
     BasketComponent.prototype.initPaypal = function () {
@@ -292,7 +295,6 @@ var BasketComponent = (function () {
                 size: 'small'
             },
             payment: function (data, actions) {
-                // todo - hide button when basketTotal is zero? make it inactive?
                 return actions.payment.create({
                     payment: {
                         transactions: [
@@ -462,15 +464,16 @@ var ProductsListComponent = (function () {
         });
         this.productsService.fetchProducts().subscribe(function (response) {
             _this.products = response['products'];
-            // this.pending = false;
         });
         this.subscription = this.basketService.basketProductsChanged
             .subscribe(function (basketProducts) {
             _this.basketProducts = basketProducts;
             _this.basketTotal = _this.basketService.getBasketTotal();
+            localStorage.setItem('basketProducts', JSON.stringify(_this.basketProducts));
         });
         this.basketProducts = this.basketService.getBasketProducts();
         this.basketTotal = this.basketService.getBasketTotal();
+        console.log('product list: ' + this.basketProducts);
     };
     ProductsListComponent.prototype.onAddProduct = function (newProduct) {
         this.basketService.addBasketProduct(newProduct);
