@@ -45,6 +45,23 @@ export class BasketService {
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
+  getPaypalRedableItems() : object[] {
+    console.log(this.basketProducts);
+    let ret = [];
+    for (let i = 0; i < this.basketProducts.length; i++){
+      ret.push({
+        "name":  this.basketProducts[i].name,
+        "sku": this.basketProducts[i].id,
+        "price": this.basketProducts[i].price,
+        "currency": "PLN",
+        "quantity": 1,
+        "description": this.basketProducts[i].description,
+        "tax": 0
+      })
+    }
+    return ret;
+  }
+
   constructor() { }
 
 }

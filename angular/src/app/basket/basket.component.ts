@@ -18,6 +18,7 @@ export class BasketComponent implements OnInit {
   basketProducts: Product[] = [];
   basketTotal = 0;
   basketQuantity = 0;
+  basketItemsList = [];
 
   constructor(private basketService: BasketService, private productsService: ProductsService) { }
 
@@ -28,12 +29,14 @@ export class BasketComponent implements OnInit {
         this.basketProducts = basketProducts;
         this.basketQuantity = basketProducts.length;
         this.basketTotal = this.basketService.getBasketTotal();
+        this.basketItemsList = this.basketService.getPaypalRedableItems();
       }
     );
 
     this.basketProducts = this.basketService.getBasketProducts();
     this.basketQuantity = this.basketService.getBasketProducts().length;
     this.basketTotal = this.basketService.getBasketTotal();
+    this.basketItemsList = this.basketService.getPaypalRedableItems();
     this.initPaypal();
   }
 
@@ -61,7 +64,10 @@ export class BasketComponent implements OnInit {
           payment: {
             transactions: [
               {
-                amount: {total: self.basketTotal, currency: 'PLN'}
+                amount: {total: self.basketTotal, currency: 'PLN'},
+                item_list: {
+                  items: self.basketItemsList
+                }
               }
             ]
           }
