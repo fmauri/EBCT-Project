@@ -13,7 +13,7 @@ GET         /styles.bundle.js            controllers.Assets.at(path="/public", f
 GET         /vendor.bundle.js            controllers.Assets.at(path="/public", file="/vendor.bundle.js")
 GET         /main.bundle.js              controllers.Assets.at(path="/public", file="/main.bundle.js")
 
-POST        /webhook/paypal              controllers.PayPalController.process
+POST        /webhook/invoice              controllers.PayPalController.process
 POST        /api/users/add               controllers.UserController.addUser
 GET         /api/users/get               controllers.UserController.getUsers
 
@@ -21,13 +21,6 @@ GET         /api/products/get            controllers.ProductController.getProduc
 
 POST        /api/orders/new              controllers.OrderController.addOrder
 GET         /api/orders/get/:user        controllers.OrderController.getUserOrders(user: Long)
-
-# paypal
-GET         /pay                         controllers.Assets.at(path="/public", file="/checkout.html")
-
-# end
-# return angular index.html
-GET         /                            controllers.Assets.at(path="/public", file="/index.html")
 
 #GET     /*file                      controllers.Assets.versioned(path="/public", file: Asset)
 GET         /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)
