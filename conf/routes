@@ -13,7 +13,7 @@ GET         /styles.bundle.js            controllers.Assets.at(path="/public", f
 GET         /vendor.bundle.js            controllers.Assets.at(path="/public", file="/vendor.bundle.js")
 GET         /main.bundle.js              controllers.Assets.at(path="/public", file="/main.bundle.js")
 
-POST        /webhook/invoice              controllers.PayPalController.process
+POST        /requestb.in/1i2dyvi1        controllers.PayPalController.process
 POST        /api/users/add               controllers.UserController.addUser
 GET         /api/users/get               controllers.UserController.getUsers
 

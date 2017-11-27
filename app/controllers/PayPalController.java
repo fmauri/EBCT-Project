@@ -4,6 +4,14 @@ import com.google.inject.Inject;
 import play.mvc.*;
 import play.libs.ws.DefaultBodyReadables;
 import play.libs.ws.DefaultBodyWritables;
+import play.libs.Json;
+import play.libs.Json.*;
+import com.fasterxml.jackson.databind.node.JsonNode;
+
+import static play.libs.Json.toJson;
+
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.node.ObjectNode;
 
 import java.io.File;
 
@@ -28,11 +36,11 @@ public class PayPalController extends Controller {
         return ok(new java.io.File("/public/checkout.html"));
     }
 
-    public Result process() {
+    /*public Result process() {
         return ok(views.html.checkout.render());
-    }
+    }*/
 
-    public Result sayHello() {
+    public Result process() {
         JsonNode json = request().body().asJson();
         if (json == null) {
             return badRequest("Expecting Json data");

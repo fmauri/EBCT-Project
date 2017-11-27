@@ -6,7 +6,7 @@ import play.libs.ws.*;
 
 import java.util.concurrent.CompletionStage;
 
-public class WebhookController implements WSBodyReadables, WSBodyWritables extends Controller {
+public class WebhookController implements WSBodyReadables, WSBodyWritables {
     private final WSClient ws;
 
     @Inject
