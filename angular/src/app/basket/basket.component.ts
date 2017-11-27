@@ -20,7 +20,7 @@ export class BasketComponent implements OnInit {
   basketQuantity = 0;
   basketItemsList = [];
 
-  constructor(private basketService: BasketService, private productsService: ProductsService) { }
+  constructor(private basketService: BasketService) { }
 
   ngOnInit() {
     this.subscription = this.basketService.basketProductsChanged
@@ -59,7 +59,6 @@ export class BasketComponent implements OnInit {
       },
 
       payment: function (data, actions) {
-        // todo - hide button when basketTotal is zero? make it inactive?
         return actions.payment.create({
           payment: {
             transactions: [

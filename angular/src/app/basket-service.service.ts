@@ -6,15 +6,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { BasketState } from './basket-state';
 import { Product } from './product.model';
-
-const API_URL = 'http://demo5661760.mockable.io/';
 
 @Injectable()
 export class BasketService {
   basketProductsChanged = new Subject<Product[]>();
-  basketProducts: Product[] = [];
+  basketProducts: Product[];
   basketTotal = 0;
 
   getBasketProducts() {
@@ -24,6 +21,9 @@ export class BasketService {
   addBasketProduct(newProduct: Product) {
     this.basketProducts.push(newProduct);
     this.basketTotal += newProduct.price;
+
+    localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
+
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
@@ -32,6 +32,7 @@ export class BasketService {
       return item.id !== product.id;
     });
     this.basketTotal -= product.price;
+    localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
@@ -42,11 +43,11 @@ export class BasketService {
   emptyBasket() {
     this.basketProducts = [];
     this.basketTotal = 0;
+    localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
     this.basketProductsChanged.next(this.basketProducts.slice());
   }
 
   getPaypalRedableItems() : object[] {
-    console.log(this.basketProducts);
     let ret = [];
     for (let i = 0; i < this.basketProducts.length; i++){
       ret.push({
@@ -62,6 +63,12 @@ export class BasketService {
     return ret;
   }
 
-  constructor() { }
+  constructor() {
+    this.basketProducts = JSON.parse(localStorage.getItem('basketProducts') || '[]');
+    this.basketProducts.forEach(
+        item => this.basketTotal += item.price
+    );
+  }
+
 
 }
