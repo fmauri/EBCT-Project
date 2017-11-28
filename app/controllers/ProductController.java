@@ -3,6 +3,7 @@ package controllers;
 import io.ebean.Ebean;
 import models.Category;
 import models.Product;
+import play.api.Environment;
 import play.api.Mode;
 import play.api.Play;
 import play.data.FormFactory;
@@ -32,8 +33,18 @@ public class ProductController extends Controller {
         return ok(Json.toJson(product));
     }
 
+    @Inject
+    private Environment environment;
     public Result getMinifiedImage(String id){
-        return ok(new File("images/minified/img" + id + ".JPG")).as("image/jpeg");
+        File file;
+        if(environment.mode().toString().equals("Prod")){
+            file = environment.getFile("../../../images/minified/img" + id + ".JPG");
+
+        } else{
+            file = environment.getFile("images/minified/img" + id + ".JPG");
+        }
+        return ok(file).as("image/jpeg");
+
     }
 
 }
