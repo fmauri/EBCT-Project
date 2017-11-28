@@ -77,9 +77,9 @@ AppComponent = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
@@ -118,7 +118,7 @@ var AppModule = (function () {
     return AppModule;
 }());
 AppModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_7__header_header_component__["a" /* HeaderComponent */],
@@ -126,16 +126,17 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__basket_basket_component__["a" /* BasketComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* RouterModule */].forRoot(appRoutes),
             __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["g" /* MatToolbarModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_material__["c" /* MatGridListModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_material__["b" /* MatCardModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClientModule */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_material__["d" /* MatListModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MatSidenavModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MatSidenavModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MatProgressSpinnerModule */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_10__basket_service_service__["a" /* BasketService */],
@@ -372,7 +373,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "a:hover {\n    color: #e20a79;\n\n}\n\n.mat-toolbar {\n    /*background-color: transparent;*/\n\n    background-color: #4415ae;\n}\n\n.header__logo {\n    color: white;\n    font-size: larger;\n    /*font-weight: bold;*/\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -385,7 +386,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\">\n  <!-- <mat-toolbar-row> -->\n    <button mat-button [routerLink]=\"''\">ImagineThat</button>\n    <!-- <span class=\"example-spacer\"></span>\n    <span>Products</span> -->\n    <!-- <mat-icon class=\"example-icon\">favorite</mat-icon>\n    <mat-icon class=\"example-icon\">delete</mat-icon> -->\n  <!-- </mat-toolbar-row> -->\n</mat-toolbar>\n"
+module.exports = "<mat-toolbar>\n  <!-- <mat-toolbar-row> -->\n  <a class=\"header__logo\" [routerLink]=\"''\">ImagineThat</a>\n    <!-- <span class=\"example-spacer\"></span>\n    <span>Products</span> -->\n    <!-- <mat-icon class=\"example-icon\">favorite</mat-icon>\n    <mat-icon class=\"example-icon\">delete</mat-icon> -->\n  <!-- </mat-toolbar-row> -->\n</mat-toolbar>\n"
 
 /***/ }),
 
@@ -446,7 +447,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/products-list/products-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n          <!--<mat-progress-spinner *ngIf=\"pending; else page\" mode=\"indeterminate\"></mat-progress-spinner>-->\n\n          <!--<ng-template  #page>-->\n  <div>\n              <mat-sidenav-container class=\"example-container\">\n\n                <mat-sidenav mode=\"side\" opened=\"false\" position=\"start\" #sidenav1 class=\"example-sidenav\">\n                    <br>\n                    Categories:\n                    <br>\n                    <mat-selection-list #cats>\n                      <mat-list-option *ngFor=\"let cat of categories\">\n                        {{cat.name}}\n                      </mat-list-option>\n                    </mat-selection-list>\n\n                </mat-sidenav>\n\n                <div>\n                    <mat-grid-list cols=\"3\" rowHeight=\"12em\">\n                        <mat-grid-tile\n                            *ngFor=\"let product of products\"\n                            [colspan]=1\n                            [rowspan]=2\n                            [style.background]=\"pink\">\n\n                            <mat-card class=\"product-card\">\n                              <img mat-card-image src={{product.img}} alt=\"PICTURE\">\n                              <mat-card-content>\n                                <p>{{product.price}} PLN</p>\n                                <span class=\"empty-line\"></span>\n                                <p>{{product.name}}</p>\n                                <span class=\"empty-line\"></span>\n                                <p>{{product.description}}</p>\n                              </mat-card-content>\n                              <mat-card-actions>\n                                <button mat-raised-button color=\"primary\" *ngIf=\"!isInBasket(product)\" (click)=\"onAddProduct(product)\">ADD TO BASKET</button>\n                                <button mat-raised-button color=\"warn\" *ngIf=\"isInBasket(product)\" (click)=\"onRemoveProduct(product)\">REMOVE FROM BASKET</button>\n                              </mat-card-actions>\n                            </mat-card>\n\n                        </mat-grid-tile>\n                      </mat-grid-list>\n                    </div>\n\n\n                <mat-sidenav #sidenav mode=\"side\" opened=\"true\" position=\"end\" class=\"example-sidenav\">\n                  <br>\n                  <h3>Basket:</h3>\n                  <br>\n<!--basket list-->\n                  <mat-grid-list class=\"basket-list\" cols=\"2\" rowHeight=\"2em\" *ngFor=\"let basketProduct of basketProducts\">\n                    <mat-grid-tile\n                            [colspan]=1\n                            [rowspan]=1>\n\n                      {{basketProduct.name}}:\n                    </mat-grid-tile>\n                    <mat-grid-tile\n                            [colspan]=1\n                            [rowspan]=1>\n\n                      {{basketProduct.price}} PLN\n                    </mat-grid-tile>\n                  </mat-grid-list>\n\n                  <mat-grid-list class=\"basket-list\" cols=\"2\" rowHeight=\"2em\">\n                    <mat-grid-tile class=\"under-item\"\n                            [colspan]=1\n                            [rowspan]=1>\n\n                      Items:\n                    </mat-grid-tile>\n                    <mat-grid-tile class=\"under-item\"\n                            [colspan]=1\n                            [rowspan]=1>\n\n                      {{basketProducts.length}}\n                    </mat-grid-tile>\n                    <mat-grid-tile class=\"under-item\"\n                            [colspan]=1\n                            [rowspan]=1>\n\n                      Total:\n                    </mat-grid-tile>\n                    <mat-grid-tile class=\"under-item\"\n                            [colspan]=1\n                            [rowspan]=1>\n\n                      {{basketTotal}}\n                    </mat-grid-tile>\n                    <mat-grid-tile class=\"under-item under-button\"\n                            [colspan]=2\n                            [rowspan]=2>\n                      <button mat-raised-button color=\"primary\" [disabled]=\"basketProducts.length === 0\" [routerLink]=\"'/basket'\">CHECKOUT</button>\n                    </mat-grid-tile>\n                    <mat-grid-tile class=\"under-item under-button\"\n                            [colspan]=2\n                            [rowspan]=2>\n                      <button mat-raised-button color=\"warn\" [disabled]=\"basketProducts.length === 0\" (click)=\"onEmptyBasket()\">EMPTY BASKET</button>\n                    </mat-grid-tile>\n                  </mat-grid-list>\n                </mat-sidenav>\n\n                <button mat-fab class=\"example-fab-cat\" (click)=\"sidenav1.toggle()\">\n                  <mat-icon *ngIf=\"!sidenav1.opened\">Cat</mat-icon>\n                  <mat-icon *ngIf=\"sidenav1.opened\">Hide</mat-icon>\n                </button>\n\n                <button mat-fab class=\"example-fab\" (click)=\"sidenav.toggle()\">\n                  <mat-icon *ngIf=\"!sidenav.opened\">Basket</mat-icon>\n                  <mat-icon *ngIf=\"sidenav.opened\">Hide</mat-icon>\n                </button>\n\n              </mat-sidenav-container>\n\n      <!--</ng-template>-->\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"pending\" class=\"spinner__div\">\n  <mat-grid-list cols=\"1\" rowHeight=\"20em\">\n    <mat-grid-tile>\n      <mat-spinner ></mat-spinner>\n    </mat-grid-tile>\n  </mat-grid-list>\n</div>\n\n<div *ngIf=\"!pending\">\n  <div>\n    <mat-sidenav-container class=\"example-container\">\n\n      <mat-sidenav mode=\"side\" opened=\"false\" position=\"start\" #sidenav1>\n      </mat-sidenav>\n\n      <div>\n        <mat-grid-list cols=\"3\" rowHeight=\"12em\">\n          <mat-grid-tile\n                  *ngFor=\"let product of products\"\n                  [colspan]=1\n                  [rowspan]=2\n                  [style.background]=\"pink\">\n\n            <mat-card class=\"product-card\">\n              <img mat-card-image src={{product.img}} alt=\"PICTURE\">\n              <mat-card-content>\n                <p>{{product.price}} PLN</p>\n                <span class=\"empty-line\"></span>\n                <p>{{product.name}}</p>\n                <span class=\"empty-line\"></span>\n                <p>{{product.description}}</p>\n              </mat-card-content>\n              <mat-card-actions>\n                <button mat-raised-button color=\"primary\" *ngIf=\"!isInBasket(product)\" (click)=\"onAddProduct(product)\">ADD TO BASKET</button>\n                <button mat-raised-button color=\"warn\" *ngIf=\"isInBasket(product)\" (click)=\"onRemoveProduct(product)\">REMOVE FROM BASKET</button>\n              </mat-card-actions>\n            </mat-card>\n\n          </mat-grid-tile>\n        </mat-grid-list>\n      </div>\n\n\n      <mat-sidenav #sidenav mode=\"side\" opened=\"true\" position=\"end\" class=\"example-sidenav\">\n        <br>\n        <h3>Basket:</h3>\n        <br>\n        <!--basket list-->\n        <mat-grid-list class=\"basket-list\" cols=\"2\" rowHeight=\"2em\" *ngFor=\"let basketProduct of basketProducts\">\n          <mat-grid-tile\n                  [colspan]=1\n                  [rowspan]=1>\n\n            {{basketProduct.name}}:\n          </mat-grid-tile>\n          <mat-grid-tile\n                  [colspan]=1\n                  [rowspan]=1>\n\n            {{basketProduct.price}} PLN\n          </mat-grid-tile>\n        </mat-grid-list>\n\n        <mat-grid-list class=\"basket-list\" cols=\"2\" rowHeight=\"2em\">\n          <mat-grid-tile class=\"under-item\"\n                         [colspan]=1\n                         [rowspan]=1>\n\n            Items:\n          </mat-grid-tile>\n          <mat-grid-tile class=\"under-item\"\n                         [colspan]=1\n                         [rowspan]=1>\n\n            {{basketProducts.length}}\n          </mat-grid-tile>\n          <mat-grid-tile class=\"under-item\"\n                         [colspan]=1\n                         [rowspan]=1>\n\n            Total:\n          </mat-grid-tile>\n          <mat-grid-tile class=\"under-item\"\n                         [colspan]=1\n                         [rowspan]=1>\n\n            {{basketTotal}}\n          </mat-grid-tile>\n          <mat-grid-tile class=\"under-item under-button\"\n                         [colspan]=2\n                         [rowspan]=2>\n            <button mat-raised-button color=\"primary\" [disabled]=\"basketProducts.length === 0\" [routerLink]=\"'/basket'\">CHECKOUT</button>\n          </mat-grid-tile>\n          <mat-grid-tile class=\"under-item under-button\"\n                         [colspan]=2\n                         [rowspan]=2>\n            <button mat-raised-button color=\"warn\" [disabled]=\"basketProducts.length === 0\" (click)=\"onEmptyBasket()\">EMPTY BASKET</button>\n          </mat-grid-tile>\n        </mat-grid-list>\n      </mat-sidenav>\n\n      <!--<button mat-fab class=\"example-fab-cat\" (click)=\"sidenav1.toggle()\">-->\n      <!--<mat-icon *ngIf=\"!sidenav1.opened\">Cat</mat-icon>-->\n      <!--<mat-icon *ngIf=\"sidenav1.opened\">Hide</mat-icon>-->\n      <!--</button>-->\n\n      <button mat-fab class=\"example-fab\" (click)=\"sidenav.toggle()\">\n        <mat-icon *ngIf=\"!sidenav.opened\">Basket</mat-icon>\n        <mat-icon *ngIf=\"sidenav.opened\">Hide</mat-icon>\n      </button>\n\n    </mat-sidenav-container>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -471,18 +472,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProductsListComponent = (function () {
-    // allProducts: Product[];
     function ProductsListComponent(productsService, basketService) {
         this.productsService = productsService;
         this.basketService = basketService;
+        this.pending = true;
     }
     ProductsListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.productsService.fetchCategories().subscribe(function (response) {
-            _this.categories = response['categories'];
-        });
         this.productsService.fetchProducts().subscribe(function (response) {
             _this.products = response['products'];
+            _this.pending = false;
         });
         this.subscription = this.basketService.basketProductsChanged
             .subscribe(function (basketProducts) {
@@ -545,16 +544,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var API_URL = 'https://demo5661760.mockable.io/';
 var ProductsService = (function () {
-    // products: Product[];
     function ProductsService(http) {
         this.http = http;
         this.fetchProducts();
     }
     ProductsService.prototype.fetchProducts = function () {
         return this.http.get(API_URL + 'products/get');
-    };
-    ProductsService.prototype.fetchCategories = function () {
-        return this.http.get(API_URL + 'categories/get');
     };
     return ProductsService;
 }());

@@ -1,0 +1,17 @@
+a:hover {
+    color: #e20a79;
+
+}
+
+.mat-toolbar {
+    /*background-color: transparent;*/
+
+    background-color: #4415ae;
+}
+
+.header__logo {
+    color: white;
+    font-size: larger;
+    /*font-weight: bold;*/
+    text-decoration: none;
+}

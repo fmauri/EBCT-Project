@@ -6,7 +6,6 @@ const API_URL = 'https://demo5661760.mockable.io/';
 
 @Injectable()
 export class ProductsService {
-  // products: Product[];
 
   constructor(private http: HttpClient) {
     this.fetchProducts();
@@ -15,9 +14,4 @@ export class ProductsService {
   fetchProducts() {
     return this.http.get(API_URL + 'products/get');
   }
-
-  fetchCategories() {
-    return this.http.get(API_URL + 'categories/get');
-  }
-
 }
