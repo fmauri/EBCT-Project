@@ -1,6 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -11,7 +11,7 @@ import {
   MatButtonModule,
   MatListModule,
   MatSidenavModule ,
-  // MatProgressSpinnerModule
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -47,7 +47,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatListModule,
     MatSidenavModule,
-    // MatProgressSpinnerModule
+    MatProgressSpinnerModule
   ],
   providers: [
     BasketService,
