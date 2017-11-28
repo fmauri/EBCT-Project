@@ -36,7 +36,7 @@ exports.i(__webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":fa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Barlow);", ""]);
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n\nbody{\n    font-family: 'Barlow', serif;\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\n\nbody{\n    font-family: 'Barlow', serif;\n    background-color: #42413D;\n    color: white;\n}\n\n.mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {\n    background-color: #FFCE2B;\n}\n\n.mat-drawer-container {\n    background-color: #42413D;\n}\n\n.mat-card {\n    background: #42413D;\n    color: white;\n    border: 0.5px solid #FFCE2B;\n}\n\n.mat-fab.mat-warn, .mat-mini-fab.mat-warn, .mat-raised-button.mat-warn {\n    background-color: #959492;\n    color: white;\n}\n\n.mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-raised-button.mat-accent {\n    background-color: #FFCE2B;\n}\n\n.mat-drawer {\n    background-color: #42413D;\n    color: white;\n    border: 0.5px solid #FFCE2B;\n}\n\n.mat-drawer.mat-drawer-end {\n    top: 0.8em;\n}\n\n", ""]);
 
 // exports
 

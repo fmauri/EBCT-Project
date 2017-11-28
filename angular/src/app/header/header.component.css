@@ -1,17 +1,17 @@
 a:hover {
-    color: #e20a79;
+    color: #fee761;
 
 }
 
 .mat-toolbar {
-    /*background-color: transparent;*/
+    background-color: transparent;
 
-    background-color: #4415ae;
 }
 
 .header__logo {
-    color: white;
     font-size: larger;
-    /*font-weight: bold;*/
+    font-family: 'Barlow', serif;
     text-decoration: none;
+    color: #FFCE2B;
 }
+

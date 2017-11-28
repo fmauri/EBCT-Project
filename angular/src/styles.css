@@ -6,4 +6,40 @@
 
 body{
     font-family: 'Barlow', serif;
+    background-color: #42413D;
+    color: white;
 }
+
+.mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+    background-color: #FFCE2B;
+}
+
+.mat-drawer-container {
+    background-color: #42413D;
+}
+
+.mat-card {
+    background: #42413D;
+    color: white;
+    border: 0.5px solid #FFCE2B;
+}
+
+.mat-fab.mat-warn, .mat-mini-fab.mat-warn, .mat-raised-button.mat-warn {
+    background-color: #959492;
+    color: white;
+}
+
+.mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-raised-button.mat-accent {
+    background-color: #FFCE2B;
+}
+
+.mat-drawer {
+    background-color: #42413D;
+    color: white;
+    border: 0.5px solid #FFCE2B;
+}
+
+.mat-drawer.mat-drawer-end {
+    top: 0.8em;
+}
+

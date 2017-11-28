@@ -12,3 +12,11 @@
     padding-bottom: 1em;
 }
 
+
+.basket-page {
+    color: white;
+}
+
+.mat-button, .mat-icon-button, .mat-raised-button {
+    color: black;
+}
