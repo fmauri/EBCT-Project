@@ -15,19 +15,15 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   basketProducts: Product[];
   basketTotal: number;
-  categories: { id: number, name: string }[];
-  // allProducts: Product[];
+  pending = true;
 
   constructor(private productsService: ProductsService, private basketService: BasketService) { }
 
   ngOnInit() {
-
-    this.productsService.fetchCategories().subscribe((response: { id: number, name: string }[]) => {
-      this.categories = response['categories'];
-    });
-
     this.productsService.fetchProducts().subscribe((response: Product[]) => {
       this.products = response['products'];
+      this.pending = false;
+
     });
 
     this.subscription = this.basketService.basketProductsChanged
