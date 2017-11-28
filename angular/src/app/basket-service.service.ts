@@ -6,8 +6,6 @@ import 'rxjs/add/operator/catch';
 
 import { Product } from './product.model';
 
-const API_URL = 'http://demo5661760.mockable.io/';
-
 @Injectable()
 export class BasketService {
   basketProductsChanged = new Subject<Product[]>();
@@ -44,7 +42,6 @@ export class BasketService {
   emptyBasket() {
     this.basketProducts = [];
     this.basketTotal = 0;
-
     localStorage.setItem('basketProducts', JSON.stringify(this.basketProducts));
     this.basketProductsChanged.next(this.basketProducts.slice());
   }

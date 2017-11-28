@@ -172,7 +172,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var API_URL = 'http://demo5661760.mockable.io/';
 var BasketService = (function () {
     function BasketService() {
         var _this = this;
