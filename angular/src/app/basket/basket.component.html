@@ -29,7 +29,7 @@
     <mat-grid-tile
             [colspan]=1
             [rowspan]=1>
-      <button mat-raised-button color="warn" (click)="onEmptyBasket()" [routerLink]="'/products'">EMPTY BASKET</button>
+      <button mat-raised-button color="warn" (click)="onEmptyBasket()">EMPTY BASKET</button>
     </mat-grid-tile>
   </mat-grid-list>
   <hr>
@@ -88,7 +88,7 @@
     <mat-grid-tile
       [colspan]=1
       [rowspan]=1>
-      <div id="paypal-button"></div>
+      <div [hidden]="basketTotal === 0" id="paypal-button"></div>
     </mat-grid-tile>
 
   </mat-grid-list>
