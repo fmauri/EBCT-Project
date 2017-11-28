@@ -552,7 +552,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 // const API_URL = 'https://demo5661760.mockable.io/';
-var API_URL = 'http://localhost:9000/api/';
+var API_URL = '/api/';
 var ProductsService = (function () {
     function ProductsService(http) {
         this.http = http;

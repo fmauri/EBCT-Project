@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Product } from './product.model';
 
 // const API_URL = 'https://demo5661760.mockable.io/';
-const API_URL = 'http://localhost:9000/api/';
+const API_URL = '/api/';
 
 @Injectable()
 export class ProductsService {
