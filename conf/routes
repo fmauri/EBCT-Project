@@ -23,6 +23,7 @@ GET         /api/orders/get/:user        controllers.OrderController.getUserOrde
 
 # paypal
 GET         /pay                         controllers.Assets.at(path="/public", file="/checkout.html")
+POST        /paypal                      controllers.PayPalController.process
 
 # end
 # return angular index.html

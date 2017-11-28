@@ -1,6 +1,7 @@
 package controllers;
 
 import com.google.inject.Inject;
+import com.fasterxml.jackson.databind.JsonNode;
 import play.mvc.*;
 
 import java.io.File;
@@ -24,6 +25,20 @@ public class PayPalController extends Controller {
 
     public Result checkout() {
         return ok(new java.io.File("/public/checkout.html"));
+    }
+
+    public Result process() {
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            String name = json.findPath("parent_payment").textValue();
+            if (name == null) {
+                return badRequest("Missing parameter [name]");
+            } else {
+                return ok("Hello " + name);
+            }
+        }
     }
 
 }
