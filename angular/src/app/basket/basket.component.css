@@ -14,9 +14,22 @@
 
 
 .basket-page {
-    color: white;
+    color: black;
 }
 
 .mat-button, .mat-icon-button, .mat-raised-button {
+    color: white;
+
+}
+
+input {
+    margin-left: 1em;
+}
+
+.mat-button[_ngcontent-c11], .mat-icon-button[_ngcontent-c11], .mat-raised-button[_ngcontent-c11] {
     color: black;
+}
+
+.color-font {
+    color: #0f9da8;
 }
