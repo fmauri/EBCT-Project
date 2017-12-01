@@ -2,7 +2,7 @@
 
   <div class="basket-title">
     <h1 class="color-font">Checkout</h1>
-    <button mat-raised-button [routerLink]="'/products'">Continue Shopping</button>
+    <button mat-raised-button class="grey-button" [routerLink]="'/products'">Continue Shopping</button>
   </div>
 
   <mat-grid-list cols="5" rowHeight="4em">
@@ -29,7 +29,7 @@
     <mat-grid-tile
             [colspan]=1
             [rowspan]=1>
-      <button mat-raised-button color="warn" (click)="onEmptyBasket()">EMPTY BASKET</button>
+      <button mat-raised-button class="grey-button" (click)="onEmptyBasket()">EMPTY BASKET</button>
     </mat-grid-tile>
   </mat-grid-list>
   <hr>
@@ -59,7 +59,7 @@
     <mat-grid-tile
             [colspan]=1
             [rowspan]=1>
-      <button mat-raised-button color="warn" (click)="onRemoveItem(basketProduct)">X</button>
+      <button mat-raised-button class="grey-button" (click)="onRemoveItem(basketProduct)">X</button>
     </mat-grid-tile>
 
   </mat-grid-list>
@@ -80,24 +80,30 @@
 
   </mat-grid-list>
 
-  <mat-grid-list cols="5" rowHeight="3em">
-    <form [hidden]="basketTotal === 0" #emailForm="ngForm" (ngSubmit)="login(email.value, password.value); logForm.reset()">
+  <mat-grid-list cols="5" rowHeight="4em">
+    <mat-grid-tile
+            [colspan]=5
+            [rowspan]=1>
+      Where should we send the pictures?
+    </mat-grid-tile>
+
       <mat-grid-tile
               [colspan]=5
               [rowspan]=1>
-
-        <mat-form-field>
-          <input  name="email" email placeholder="E-mail" matInput #email required >
-          <mat-error >Invalid Email</mat-error>
-        </mat-form-field>
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Enter your email" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" [disabled]="email.invalid" (click)="sendEmail(); showPay();">OK</button>
 
       </mat-grid-tile>
-    </form>
 
     <mat-grid-tile
       [colspan]=5
       [rowspan]=1>
-      <div [hidden]="!emailForm.form.valid || basketTotal === 0" id="paypal-button"></div>
+      <div [hidden]="!payShow || basketTotal === 0" id="paypal-button"></div>
     </mat-grid-tile>
 
   </mat-grid-list>

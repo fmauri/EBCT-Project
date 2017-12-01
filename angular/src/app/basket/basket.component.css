@@ -33,3 +33,12 @@ input {
 .color-font {
     color: #0f9da8;
 }
+
+.grey-button {
+    color: white !important;
+    background-color: #959492 !important;
+}
+
+mat-form-field {
+    margin-right: 0.5em;
+}

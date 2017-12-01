@@ -141,7 +141,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["g" /* MatProgressSpinnerModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatFormFieldModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["e" /* MatInputModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* FormsModule */]
+            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["d" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["i" /* ReactiveFormsModule */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_11__basket_service_service__["a" /* BasketService */],
@@ -245,7 +246,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".basket-item-image {\n    max-height:  5.8em;\n    max-width: 5.8em;\n}\n\n.continue-button {\n    left: 0.3em;\n}\n\n.basket-title {\n    text-align: center;\n    padding-bottom: 1em;\n}\n\n\n.basket-page {\n    color: black;\n}\n\n.mat-button, .mat-icon-button, .mat-raised-button {\n    color: white;\n\n}\n\ninput {\n    margin-left: 1em;\n}\n\n.mat-button[_ngcontent-c11], .mat-icon-button[_ngcontent-c11], .mat-raised-button[_ngcontent-c11] {\n    color: black;\n}\n\n.color-font {\n    color: #0f9da8;\n}", ""]);
+exports.push([module.i, ".basket-item-image {\n    max-height:  5.8em;\n    max-width: 5.8em;\n}\n\n.continue-button {\n    left: 0.3em;\n}\n\n.basket-title {\n    text-align: center;\n    padding-bottom: 1em;\n}\n\n\n.basket-page {\n    color: black;\n}\n\n.mat-button, .mat-icon-button, .mat-raised-button {\n    color: white;\n\n}\n\ninput {\n    margin-left: 1em;\n}\n\n.mat-button[_ngcontent-c11], .mat-icon-button[_ngcontent-c11], .mat-raised-button[_ngcontent-c11] {\n    color: black;\n}\n\n.color-font {\n    color: #0f9da8;\n}\n\n.grey-button {\n    color: white !important;\n    background-color: #959492 !important;\n}\n\nmat-form-field {\n    margin-right: 0.5em;\n}\n", ""]);
 
 // exports
 
@@ -258,7 +259,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/basket/basket.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"basket-page\">\n\n  <div class=\"basket-title\">\n    <h1 class=\"color-font\">Checkout</h1>\n    <button mat-raised-button [routerLink]=\"'/products'\">Continue Shopping</button>\n  </div>\n\n  <mat-grid-list cols=\"5\" rowHeight=\"4em\">\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            <b>Name</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b>Image</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b>Category</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b>Price</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <button mat-raised-button color=\"warn\" (click)=\"onEmptyBasket()\">EMPTY BASKET</button>\n    </mat-grid-tile>\n  </mat-grid-list>\n  <hr>\n  <!--List of rows-->\n  <mat-grid-list cols=\"5\" rowHeight=\"6em\" *ngFor=\"let basketProduct of basketProducts\">\n    <!--Columns-->\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            {{basketProduct.name}}\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            <img class=\"basket-item-image\" src=\"{{basketProduct.img}}\" alt=\"Image\">\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      {{basketProduct.category}}\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            {{basketProduct.price}} PLN\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <button mat-raised-button color=\"warn\" (click)=\"onRemoveItem(basketProduct)\">X</button>\n    </mat-grid-tile>\n\n  </mat-grid-list>\n\n  <mat-grid-list cols=\"5\" rowHeight=\"6em\">\n    <hr>\n    <mat-grid-tile class=\"continue-button\"\n            [colspan]=4\n            [rowspan]=1>\n    </mat-grid-tile>\n      <!--empty place-->\n\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b class=\"color-font\">Total: {{basketTotal}} PLN</b>\n    </mat-grid-tile>\n\n  </mat-grid-list>\n\n  <mat-grid-list cols=\"5\" rowHeight=\"3em\">\n    <form [hidden]=\"basketTotal === 0\" #emailForm=\"ngForm\" (ngSubmit)=\"login(email.value, password.value); logForm.reset()\">\n      <mat-grid-tile\n              [colspan]=5\n              [rowspan]=1>\n\n        <mat-form-field>\n          <input  name=\"email\" email placeholder=\"E-mail\" matInput #email required >\n          <mat-error >Invalid Email</mat-error>\n        </mat-form-field>\n\n      </mat-grid-tile>\n    </form>\n\n    <mat-grid-tile\n      [colspan]=5\n      [rowspan]=1>\n      <div [hidden]=\"!emailForm.form.valid || basketTotal === 0\" id=\"paypal-button\"></div>\n    </mat-grid-tile>\n\n  </mat-grid-list>\n\n</div>\n\n\n\n\n"
+module.exports = "<div class=\"basket-page\">\n\n  <div class=\"basket-title\">\n    <h1 class=\"color-font\">Checkout</h1>\n    <button mat-raised-button class=\"grey-button\" [routerLink]=\"'/products'\">Continue Shopping</button>\n  </div>\n\n  <mat-grid-list cols=\"5\" rowHeight=\"4em\">\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            <b>Name</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b>Image</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b>Category</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b>Price</b>\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <button mat-raised-button class=\"grey-button\" (click)=\"onEmptyBasket()\">EMPTY BASKET</button>\n    </mat-grid-tile>\n  </mat-grid-list>\n  <hr>\n  <!--List of rows-->\n  <mat-grid-list cols=\"5\" rowHeight=\"6em\" *ngFor=\"let basketProduct of basketProducts\">\n    <!--Columns-->\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            {{basketProduct.name}}\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            <img class=\"basket-item-image\" src=\"{{basketProduct.img}}\" alt=\"Image\">\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      {{basketProduct.category}}\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n            {{basketProduct.price}} PLN\n    </mat-grid-tile>\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <button mat-raised-button class=\"grey-button\" (click)=\"onRemoveItem(basketProduct)\">X</button>\n    </mat-grid-tile>\n\n  </mat-grid-list>\n\n  <mat-grid-list cols=\"5\" rowHeight=\"6em\">\n    <hr>\n    <mat-grid-tile class=\"continue-button\"\n            [colspan]=4\n            [rowspan]=1>\n    </mat-grid-tile>\n      <!--empty place-->\n\n    <mat-grid-tile\n            [colspan]=1\n            [rowspan]=1>\n      <b class=\"color-font\">Total: {{basketTotal}} PLN</b>\n    </mat-grid-tile>\n\n  </mat-grid-list>\n\n  <mat-grid-list cols=\"5\" rowHeight=\"4em\">\n    <mat-grid-tile\n            [colspan]=5\n            [rowspan]=1>\n      Where should we send the pictures?\n    </mat-grid-tile>\n\n      <mat-grid-tile\n              [colspan]=5\n              [rowspan]=1>\n        <div class=\"example-container\">\n          <mat-form-field>\n            <input matInput placeholder=\"Enter your email\" [formControl]=\"email\" required>\n            <mat-error *ngIf=\"email.invalid\">{{getErrorMessage()}}</mat-error>\n          </mat-form-field>\n        </div>\n        <button mat-raised-button color=\"primary\" [disabled]=\"email.invalid\" (click)=\"sendEmail(); showPay();\">OK</button>\n\n      </mat-grid-tile>\n\n    <mat-grid-tile\n      [colspan]=5\n      [rowspan]=1>\n      <div [hidden]=\"!payShow || basketTotal === 0\" id=\"paypal-button\"></div>\n    </mat-grid-tile>\n\n  </mat-grid-list>\n\n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -268,7 +269,8 @@ module.exports = "<div class=\"basket-page\">\n\n  <div class=\"basket-title\">\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BasketComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basket_service_service__ = __webpack_require__("../../../../../src/app/basket-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__basket_service_service__ = __webpack_require__("../../../../../src/app/basket-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -280,6 +282,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var BasketComponent = (function () {
     function BasketComponent(basketService) {
         this.basketService = basketService;
@@ -287,6 +290,8 @@ var BasketComponent = (function () {
         this.basketTotal = 0;
         this.basketQuantity = 0;
         this.basketItemsList = [];
+        this.payShow = false;
+        this.email = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].email]);
     }
     BasketComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -354,6 +359,18 @@ var BasketComponent = (function () {
     BasketComponent.prototype.onRemoveItem = function (product) {
         this.basketService.removeBasketProduct(product);
     };
+    BasketComponent.prototype.getErrorMessage = function () {
+        return this.email.hasError('required') ? 'You must enter a value' :
+            this.email.hasError('email') ? 'Not a valid email' :
+                '';
+    };
+    BasketComponent.prototype.sendEmail = function () {
+        //TODO send email
+        console.log(this.email.value);
+    };
+    BasketComponent.prototype.showPay = function () {
+        this.payShow = true;
+    };
     return BasketComponent;
 }());
 BasketComponent = __decorate([
@@ -362,7 +379,7 @@ BasketComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/basket/basket.component.html"),
         styles: [__webpack_require__("../../../../../src/app/basket/basket.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__basket_service_service__["a" /* BasketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__basket_service_service__["a" /* BasketService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__basket_service_service__["a" /* BasketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__basket_service_service__["a" /* BasketService */]) === "function" && _a || Object])
 ], BasketComponent);
 
 var _a;

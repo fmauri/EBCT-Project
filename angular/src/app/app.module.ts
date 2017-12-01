@@ -3,7 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import {
   MatToolbarModule,
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     BasketService,

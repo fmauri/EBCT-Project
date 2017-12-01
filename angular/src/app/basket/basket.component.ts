@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -19,6 +21,9 @@ export class BasketComponent implements OnInit {
   basketTotal = 0;
   basketQuantity = 0;
   basketItemsList = [];
+  payShow = false;
+
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private basketService: BasketService) { }
 
@@ -102,5 +107,21 @@ export class BasketComponent implements OnInit {
 
   onRemoveItem(product: Product) {
     this.basketService.removeBasketProduct(product);
+  }
+
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('email') ? 'Not a valid email' :
+        '';
+  }
+
+  sendEmail() {
+    //TODO send email
+
+    console.log(this.email.value);
+  }
+
+  showPay() {
+    this.payShow = true;
   }
 }
