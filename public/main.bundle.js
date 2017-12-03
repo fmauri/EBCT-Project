@@ -165,6 +165,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -178,9 +179,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+var API_URL = '/api/';
 var BasketService = (function () {
-    function BasketService() {
+    function BasketService(http) {
         var _this = this;
+        this.http = http;
         this.basketProductsChanged = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["a" /* Subject */]();
         this.basketTotal = 0;
         this.basketProducts = JSON.parse(localStorage.getItem('basketProducts') || '[]');
@@ -227,13 +231,20 @@ var BasketService = (function () {
         }
         return ret;
     };
+    BasketService.prototype.sendEmailToClientDev = function (email, imgs) {
+        this.http.post(API_URL + 'orders/new', {
+            email: email,
+            imgs: imgs
+        });
+    };
     return BasketService;
 }());
 BasketService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
 ], BasketService);
 
+var _a;
 //# sourceMappingURL=basket-service.service.js.map
 
 /***/ }),
@@ -322,6 +333,7 @@ var BasketComponent = (function () {
                 size: 'small'
             },
             payment: function (data, actions) {
+                self.sendEmail(); // todo - remove from (click) Ok button
                 return actions.payment.create({
                     payment: {
                         transactions: [
@@ -365,8 +377,7 @@ var BasketComponent = (function () {
                 '';
     };
     BasketComponent.prototype.sendEmail = function () {
-        //TODO send email
-        console.log(this.email.value);
+        this.basketService.sendEmailToClientDev(this.email.value, this.basketProducts.map(function (it) { return it.id; }));
     };
     BasketComponent.prototype.showPay = function () {
         this.payShow = true;

@@ -11,7 +11,10 @@ public class EmailController extends Controller {
 
     public Result index() {
 //        MailerService
-        mailerService.sendEmail();
+
+        String emailTo = "wojtek.rauk@gmail.com";
+        int[] imageIds = {1,2,3};
+        mailerService.sendEmail(emailTo, imageIds);
         return ok(views.html.index.render());
     }
 

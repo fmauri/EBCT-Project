@@ -64,6 +64,7 @@ export class BasketComponent implements OnInit {
       },
 
       payment: function (data, actions) {
+        self.sendEmail(); // todo - remove from (click) Ok button
         return actions.payment.create({
           payment: {
             transactions: [
@@ -116,9 +117,8 @@ export class BasketComponent implements OnInit {
   }
 
   sendEmail() {
-    //TODO send email
-
-    console.log(this.email.value);
+    this.basketService.sendEmailToClientDev(this.email.value,
+      this.basketProducts.map(it => {return it.id}));
   }
 
   showPay() {

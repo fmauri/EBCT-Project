@@ -5,6 +5,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Product } from './product.model';
+import {HttpClient} from "@angular/common/http";
+
+const API_URL = '/api/';
 
 @Injectable()
 export class BasketService {
@@ -62,7 +65,14 @@ export class BasketService {
     return ret;
   }
 
-  constructor() {
+  sendEmailToClientDev(email: string, imgs: number[]){
+    this.http.post(API_URL + 'orders/new', {
+      email: email,
+      imgs: imgs
+    });
+  }
+
+  constructor(private http: HttpClient) {
     this.basketProducts = JSON.parse(localStorage.getItem('basketProducts') || '[]');
     this.basketProducts.forEach(
         item => this.basketTotal += item.price

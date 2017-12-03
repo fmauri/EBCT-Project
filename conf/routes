@@ -5,7 +5,7 @@
 # An example controller showing a sample home page
 #GET         /                           controllers.HomeController.index
 
-
+#GET         /email                       controllers.EmailController.index
 GET         /robots.txt                  controllers.Assets.at(path="/public", file="/robots.txt")
 GET         /inline.bundle.js            controllers.Assets.at(path="/public", file="/inline.bundle.js")
 GET         /polyfills.bundle.js         controllers.Assets.at(path="/public", file="/polyfills.bundle.js")
