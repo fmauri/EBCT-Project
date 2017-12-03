@@ -235,6 +235,8 @@ var BasketService = (function () {
         this.http.post(API_URL + 'orders/new', {
             email: email,
             imgs: imgs
+        }).subscribe(function (ret) {
+            console.log(ret);
         });
     };
     return BasketService;

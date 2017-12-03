@@ -69,6 +69,8 @@ export class BasketService {
     this.http.post(API_URL + 'orders/new', {
       email: email,
       imgs: imgs
+    }).subscribe((ret) =>{
+      console.log(ret);
     });
   }
 
